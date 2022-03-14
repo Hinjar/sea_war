@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.6be9f63f.css",
-    "main.js": "/static/js/main.38518881.js",
-    "static/js/787.ec704a7a.chunk.js": "/static/js/787.ec704a7a.chunk.js",
-    "index.html": "/index.html",
-    "main.6be9f63f.css.map": "/static/css/main.6be9f63f.css.map",
-    "main.38518881.js.map": "/static/js/main.38518881.js.map",
-    "787.ec704a7a.chunk.js.map": "/static/js/787.ec704a7a.chunk.js.map"
+    "main.css": "/sea_war/static/css/main.6be9f63f.css",
+    "main.js": "/sea_war/static/js/main.d7165a6f.js",
+    "static/js/787.ec704a7a.chunk.js": "/sea_war/static/js/787.ec704a7a.chunk.js",
+    "index.html": "/sea_war/index.html",
+    "main.6be9f63f.css.map": "/sea_war/static/css/main.6be9f63f.css.map",
+    "main.d7165a6f.js.map": "/sea_war/static/js/main.d7165a6f.js.map",
+    "787.ec704a7a.chunk.js.map": "/sea_war/static/js/787.ec704a7a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6be9f63f.css",
-    "static/js/main.38518881.js"
+    "static/js/main.d7165a6f.js"
   ]
 }
