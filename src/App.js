@@ -21,7 +21,7 @@ function App() {
 
   const questions = questionsMass;
 
-  const wordsMass = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+  const wordsMass = ["A", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И"];
 
   const [open, setOpen] = React.useState(false);
   const [isFirstMotion, setIsFirstMotion] = useState(true);
@@ -219,6 +219,7 @@ function App() {
             </div>
           ))}
           {!isFirstMotion ? <div className="container-disabled" /> : <></>}
+          <div className="under-text">Игровое поле 1</div>
         </div>
 
         <div className="field-container">
@@ -253,6 +254,7 @@ function App() {
               ))}
             </div>
           ))}
+          <div className="under-text">Игровое поле 2</div>
         </div>
       </div>
       <Modal
@@ -300,6 +302,10 @@ function App() {
           </Button>
         </Box>
       </Modal>
+      <img
+        className="img"
+        src="https://i.playground.ru/p/0nSntyKjBv6NvQXk9s1Beg.jpeg"
+      />
     </div>
   );
 }
