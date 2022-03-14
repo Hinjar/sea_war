@@ -5,7 +5,6 @@ import {
   Button,
   FormControl,
   FormControlLabel,
-  FormLabel,
   Modal,
   Radio,
   RadioGroup,
@@ -20,7 +19,7 @@ function App() {
 
   const [selectedCell, setSelectedCell] = useState();
 
-  const [questions, setQuestions] = useState(questionsMass);
+  const questions = questionsMass;
 
   const wordsMass = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
 
@@ -170,7 +169,7 @@ function App() {
         handleClose();
       }
     }
-  }, [timer, open]);
+  }, [timer, open, firstField, isFirstMotion, selectedCell]);
 
   const style = {
     position: "absolute",
