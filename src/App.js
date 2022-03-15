@@ -21,7 +21,7 @@ function App() {
 
   const questions = questionsMass;
 
-  const wordsMass = ["A", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И"];
+  const wordsMass = ["A", "Б", "В", "Г", "Д", "Е", "Ж", "З", "И", "К"];
 
   const [open, setOpen] = React.useState(false);
   const [isFirstMotion, setIsFirstMotion] = useState(true);
