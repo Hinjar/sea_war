@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/sea_war/static/css/main.9351ba91.css",
-    "main.js": "/sea_war/static/js/main.257e003f.js",
+    "main.css": "/sea_war/static/css/main.c5aba9a7.css",
+    "main.js": "/sea_war/static/js/main.0cbadf96.js",
     "static/js/787.ec704a7a.chunk.js": "/sea_war/static/js/787.ec704a7a.chunk.js",
     "index.html": "/sea_war/index.html",
-    "main.9351ba91.css.map": "/sea_war/static/css/main.9351ba91.css.map",
-    "main.257e003f.js.map": "/sea_war/static/js/main.257e003f.js.map",
+    "main.c5aba9a7.css.map": "/sea_war/static/css/main.c5aba9a7.css.map",
+    "main.0cbadf96.js.map": "/sea_war/static/js/main.0cbadf96.js.map",
     "787.ec704a7a.chunk.js.map": "/sea_war/static/js/787.ec704a7a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9351ba91.css",
-    "static/js/main.257e003f.js"
+    "static/css/main.c5aba9a7.css",
+    "static/js/main.0cbadf96.js"
   ]
 }
