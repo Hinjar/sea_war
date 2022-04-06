@@ -269,7 +269,7 @@ export const questionsMass = [
         id: 0,
       },
       {
-        text: "Р.А. Буденко",
+        text: "Р.А.Руденко",
         isRight: true,
         id: 1,
       },

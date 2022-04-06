@@ -19,7 +19,7 @@ function App() {
 
   const [selectedCell, setSelectedCell] = useState();
 
-  const questions = questionsMass;
+  const [questions, setQuestions] = useState(questionsMass);
 
   const wordsMass = ["A", "Б", "В", "Г", "Д", "Е", "Ж", "З", "И", "К"];
 
@@ -34,8 +34,9 @@ function App() {
   };
 
   const generateField = (indexes) => {
+    if (!questions) return;
     const mass = [];
-    const mewQuestions = questionsMass;
+    let newQuestions = questions;
     for (let i = 0; i < 10; i++) {
       mass.push([]);
       for (let b = 0; b < 10; b++) {
@@ -50,7 +51,7 @@ function App() {
             id: i * 10 + b,
             questionId: question.id,
           });
-          mewQuestions.filter((que) => que.id !== question.id);
+          newQuestions = newQuestions.filter((que) => que.id !== question.id);
         } else {
           mass[i].push({
             isShip: false,
@@ -61,28 +62,42 @@ function App() {
       }
     }
 
+    setQuestions(newQuestions);
+
     return mass;
   };
 
-  const [firstField, setFirstField] = useState(
-    generateField([
-      8, 9, 12, 15, 25, 29, 47, 48, 49, 51, 53, 61, 63, 73, 77, 83, 87, 90, 91,
-      97,
-    ])
-  );
+  const [firstField, setFirstField] = useState();
 
-  const [secondField, setSecondField] = useState(
-    generateField([
-      4, 14, 16, 17, 19, 24, 29, 39, 41, 49, 51, 55, 68, 70, 78, 82, 95, 96, 97,
-      99,
-    ])
-  );
+  const [secondField, setSecondField] = useState();
+
+  useEffect(() => {
+    setFirstField(
+      generateField([
+        8, 9, 12, 15, 25, 29, 47, 48, 49, 51, 53, 61, 63, 73, 77, 83, 87, 90,
+        91, 97,
+      ])
+    );
+  }, []);
+
+  useEffect(() => {
+    if (firstField && !secondField) {
+      setSecondField(
+        generateField([
+          4, 14, 16, 17, 19, 24, 29, 39, 41, 49, 51, 55, 68, 70, 78, 82, 95, 96,
+          97, 99,
+        ])
+      );
+    }
+  }, [firstField]);
 
   const onCellClick = (cell, isRightAnswer, onChange) => {
     const newCell = { ...cell };
     if (cell.isShip) {
+      console.log(cell);
+
       setSelectedQuestion(
-        questions.find((quest) => quest.id === cell.questionId)
+        questionsMass.find((quest) => quest?.id === cell.questionId)
       );
       setSelectedCell(cell);
       handleOpen();
@@ -115,7 +130,7 @@ function App() {
 
     answer.isRight
       ? (selectedCell.status = "dead")
-      : (selectedCell.status = "miss");
+      : (selectedCell.status = "question-miss");
 
     if (isFirstMotion) {
       setFirstField(
@@ -187,73 +202,75 @@ function App() {
       <div className="page-title">Морской бой</div>
       <div className="container">
         <div className="field-container">
-          {firstField.map((e, index) => (
-            <div className="cell-container">
-              {e.map((elem, i) => (
-                <div className="cell-all-container">
-                  {index === 0 && <div className="cell-number">{i + 1}</div>}
-                  <div className="cell-wrapper">
-                    {i === 0 && (
-                      <div className="cell-word">{wordsMass[index]}</div>
-                    )}
-                    <div
-                      onClick={() => {
-                        if (!isFirstMotion) return;
-                        onCellClick(elem, true, setFirstField);
-                      }}
-                      className={
-                        elem.status === "alive"
-                          ? `cell cell-active ${
-                              !isFirstMotion && "container-disabled"
-                            }`
-                          : `cell cell-dead ${
-                              !isFirstMotion && "container-disabled"
-                            }`
-                      }
-                    >
-                      <div className={elem?.status} />
+          {firstField &&
+            firstField.map((e, index) => (
+              <div className="cell-container">
+                {e.map((elem, i) => (
+                  <div className="cell-all-container">
+                    {index === 0 && <div className="cell-number">{i + 1}</div>}
+                    <div className="cell-wrapper">
+                      {i === 0 && (
+                        <div className="cell-word">{wordsMass[index]}</div>
+                      )}
+                      <div
+                        onClick={() => {
+                          if (!isFirstMotion) return;
+                          onCellClick(elem, true, setFirstField);
+                        }}
+                        className={
+                          elem.status === "alive"
+                            ? `cell cell-active ${
+                                !isFirstMotion && "container-disabled"
+                              }`
+                            : `cell cell-dead ${
+                                !isFirstMotion && "container-disabled"
+                              }`
+                        }
+                      >
+                        <div className={elem?.status} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          ))}
+                ))}
+              </div>
+            ))}
           {!isFirstMotion ? <div className="container-disabled" /> : <></>}
           <div className="under-text">Игровое поле 1</div>
         </div>
 
         <div className="field-container">
-          {secondField.map((e, index) => (
-            <div className="cell-container">
-              {e.map((elem, i) => (
-                <div className="cell-all-container">
-                  {index === 0 && <div className="cell-number">{i + 1}</div>}
-                  <div className="cell-wrapper">
-                    {i === 0 && (
-                      <div className="cell-word">{wordsMass[index]}</div>
-                    )}
-                    <div
-                      onClick={() => {
-                        if (isFirstMotion) return;
-                        onCellClick(elem, true, setSecondField);
-                      }}
-                      className={
-                        elem.status === "alive"
-                          ? `cell cell-active ${
-                              isFirstMotion && "container-disabled"
-                            }`
-                          : `cell cell-dead ${
-                              isFirstMotion && "container-disabled"
-                            }`
-                      }
-                    >
-                      <div className={elem?.status} />
+          {secondField &&
+            secondField.map((e, index) => (
+              <div className="cell-container">
+                {e.map((elem, i) => (
+                  <div className="cell-all-container">
+                    {index === 0 && <div className="cell-number">{i + 1}</div>}
+                    <div className="cell-wrapper">
+                      {i === 0 && (
+                        <div className="cell-word">{wordsMass[index]}</div>
+                      )}
+                      <div
+                        onClick={() => {
+                          if (isFirstMotion) return;
+                          onCellClick(elem, true, setSecondField);
+                        }}
+                        className={
+                          elem.status === "alive"
+                            ? `cell cell-active ${
+                                isFirstMotion && "container-disabled"
+                              }`
+                            : `cell cell-dead ${
+                                isFirstMotion && "container-disabled"
+                              }`
+                        }
+                      >
+                        <div className={elem?.status} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          ))}
+                ))}
+              </div>
+            ))}
           <div className="under-text">Игровое поле 2</div>
         </div>
       </div>
